@@ -1,18 +1,24 @@
-- name: Test Info
-    uses: rjstone/discord-webhook-notify@v1
-    with:
-        severity: info
-        details: Test succeeded.
-        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
-- name: Test Warn
-    uses: rjstone/discord-webhook-notify@v1
-    with:
-        severity: warn
-        details: Test warning.
-        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
-- name: Test Error
-    uses: rjstone/discord-webhook-notify@v1
-    with:
-        severity: error
-        details: Test error.
-        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl 
+name: Build and Test
+on: [ pull_request ]
+
+jobs:
+  build:
+    name: Build the Code
+    # build job
+  test:
+    name: Test the Code
+    # test job
+  notify:
+    name: Discord Notification
+    runs-on: ubuntu-latest
+    needs: # make sure the notification is sent AFTER the jobs you want included have completed
+      - build
+      - test
+    if: ${{ always() }} # You always want to be notified: success, failure, or cancelled
+    
+    steps:
+      - name: Notify
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
