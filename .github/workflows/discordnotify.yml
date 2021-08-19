@@ -1,28 +1,18 @@
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-
-jobs:
-  send_embed:
-    runs-on: ubuntu-latest
-    name: Send an embed to Discord
-
-    steps:
-    - name: Run the GitHub Actions Status Embed Action
-      uses: SebastiaanZ/github-status-embed-for-discord@main
-      with:
-        # Discord webhook
-        webhook_id: '877440069483507782'  # Has to be provided as a string
-        webhook_token: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
-
-        # Optional arguments for PR-related events
-        # Note: There's no harm in including these lines for non-PR
-        # events, as non-existing paths in objects will evaluate to
-        # `null` silently and the github status embed action will
-        # treat them as absent.
-        pr_author_login: ${{ github.event.pull_request.user.login }}
-        pr_number: ${{ github.event.pull_request.number }}
-        pr_title: ${{ github.event.pull_request.title }}
-        pr_source: ${{ github.event.pull_request.head.label }} 
+- name: Test Info
+    uses: rjstone/discord-webhook-notify@v1
+    with:
+        severity: info
+        details: Test succeeded.
+        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
+- name: Test Warn
+    uses: rjstone/discord-webhook-notify@v1
+    with:
+        severity: warn
+        details: Test warning.
+        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
+- name: Test Error
+    uses: rjstone/discord-webhook-notify@v1
+    with:
+        severity: error
+        details: Test error.
+        webhookUrl: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl 
