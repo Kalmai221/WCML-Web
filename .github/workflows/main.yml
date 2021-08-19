@@ -20,5 +20,5 @@ jobs:
     - name: Run Discord Webhook
       uses: baked-libs/discord-webhook@main
       with:
-        id: 877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
+        id: 877440069483507782
         token: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
