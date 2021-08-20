@@ -20,5 +20,5 @@ jobs:
       - name: Notify
         uses: nobrayner/discord-webhook@v1
         with:
-          github-token: ${{ secrets.github_token }}
+          github-token: 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
           discord-webhook: https://discord.com/api/webhooks/877440069483507782/CLHEBo785LPqiYeRnUde5KjbFBIZfOPd7m76CiZ6BNgequ2lHDcYewg-j4NvdaG17vNl
