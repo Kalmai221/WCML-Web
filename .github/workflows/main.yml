@@ -1,0 +1,3 @@
+uses: brunoborges/justextract@v1
+with:
+  file: fileName
