@@ -1,3 +1,5 @@
-uses: brunoborges/justextract@v1
-with:
-  file: wcml.zip
+- name: Extract tgz
+        uses: ihiroky/extract-action@v1
+        with:
+          file_path: master/wcml.zip
+          extract_dir: master
